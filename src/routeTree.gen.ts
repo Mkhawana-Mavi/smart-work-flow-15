@@ -10,14 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChatRouteImport } from './routes/chat'
 import { Route as EmailRouteImport } from './routes/email'
 import { Route as NotesRouteImport } from './routes/notes'
+import { Route as PlannerRouteImport } from './routes/planner'
+import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ApiAiRouteImport } from './routes/api/ai'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmailRoute = EmailRouteImport.update({
@@ -28,6 +36,16 @@ const EmailRoute = EmailRouteImport.update({
 const NotesRoute = NotesRouteImport.update({
   id: '/notes',
   path: '/notes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlannerRoute = PlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAiRoute = ApiAiRouteImport.update({
@@ -43,38 +61,75 @@ const ApiChatRoute = ApiChatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/email': typeof EmailRoute
   '/notes': typeof NotesRoute
+  '/planner': typeof PlannerRoute
+  '/research': typeof ResearchRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/email': typeof EmailRoute
   '/notes': typeof NotesRoute
+  '/planner': typeof PlannerRoute
+  '/research': typeof ResearchRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chat': typeof ChatRoute
   '/email': typeof EmailRoute
   '/notes': typeof NotesRoute
+  '/planner': typeof PlannerRoute
+  '/research': typeof ResearchRoute
   '/api/ai': typeof ApiAiRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/email' | '/notes' | '/api/ai' | '/api/chat'
+  fullPaths:
+    | '/'
+    | '/chat'
+    | '/email'
+    | '/notes'
+    | '/planner'
+    | '/research'
+    | '/api/ai'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/email' | '/notes' | '/api/ai' | '/api/chat'
-  id: '__root__' | '/' | '/email' | '/notes' | '/api/ai' | '/api/chat'
+  to:
+    | '/'
+    | '/chat'
+    | '/email'
+    | '/notes'
+    | '/planner'
+    | '/research'
+    | '/api/ai'
+    | '/api/chat'
+  id:
+    | '__root__'
+    | '/'
+    | '/chat'
+    | '/email'
+    | '/notes'
+    | '/planner'
+    | '/research'
+    | '/api/ai'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChatRoute: typeof ChatRoute
   EmailRoute: typeof EmailRoute
   NotesRoute: typeof NotesRoute
+  PlannerRoute: typeof PlannerRoute
+  ResearchRoute: typeof ResearchRoute
   ApiAiRoute: typeof ApiAiRoute
   ApiChatRoute: typeof ApiChatRoute
 }
@@ -86,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/email': {
@@ -100,6 +162,20 @@ declare module '@tanstack/react-router' {
       path: '/notes'
       fullPath: '/notes'
       preLoaderRoute: typeof NotesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planner': {
+      id: '/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof PlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/ai': {
@@ -121,8 +197,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChatRoute: ChatRoute,
   EmailRoute: EmailRoute,
   NotesRoute: NotesRoute,
+  PlannerRoute: PlannerRoute,
+  ResearchRoute: ResearchRoute,
   ApiAiRoute: ApiAiRoute,
   ApiChatRoute: ApiChatRoute,
 }
