@@ -61,7 +61,7 @@ export function createResponsesProvider(lovableApiKey: string, initialRunId?: st
 
 export const AI_MODEL = "openai/gpt-6-astra";
 
-export const RESPONSES_PROVIDER_OPTIONS: Record<string, Record<string, unknown>> = {
+export const RESPONSES_PROVIDER_OPTIONS = {
   openai: {
     store: false,
     forceReasoning: true,
