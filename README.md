@@ -64,9 +64,3 @@ The app runs at `http://localhost:8080`.
 
 The app streams responses through the Lovable AI Gateway using the `LOVABLE_API_KEY` environment variable. When running locally outside Lovable, set the key in a `.env` file before starting the dev server.
 
-## Team members (if applicable)
-
-| Name | Role |
-| --- | --- |
-| _Add your team here_ | |
-
