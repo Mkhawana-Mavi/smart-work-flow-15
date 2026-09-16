@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export const NAV_ITEMS = [
@@ -56,19 +57,22 @@ function NavLinks({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
 function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <div className="flex h-full flex-col bg-sidebar p-4 text-sidebar-foreground">
-      <Link
-        to="/"
-        onClick={onNavigate}
-        className="mb-6 flex items-center gap-2.5 px-2 py-1"
-      >
-        <span className="flex size-9 items-center justify-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
-          <Sparkles className="size-4.5" aria-hidden />
-        </span>
-        <span className="leading-tight">
-          <span className="block font-display text-base font-semibold">Aura</span>
-          <span className="block text-xs text-sidebar-foreground/60">Workplace AI</span>
-        </span>
-      </Link>
+      <div className="mb-6 flex items-center gap-1">
+        <Link
+          to="/"
+          onClick={onNavigate}
+          className="flex min-w-0 flex-1 items-center gap-2.5 px-2 py-1"
+        >
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
+            <Sparkles className="size-4.5" aria-hidden />
+          </span>
+          <span className="min-w-0 leading-tight">
+            <span className="block truncate font-display text-base font-semibold">Aura</span>
+            <span className="block truncate text-xs text-sidebar-foreground/60">Workplace AI</span>
+          </span>
+        </Link>
+        <ThemeToggle className="shrink-0 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground" />
+      </div>
 
       <NavLinks onNavigate={onNavigate} />
 
@@ -108,7 +112,10 @@ export function AppShell({ children }: { children: ReactNode }) {
               <SidebarInner onNavigate={() => setOpen(false)} />
             </SheetContent>
           </Sheet>
-          <span className="font-display text-base font-semibold">Aura Workplace AI</span>
+          <span className="min-w-0 flex-1 truncate font-display text-base font-semibold">
+            Aura Workplace AI
+          </span>
+          <ThemeToggle className="shrink-0" />
         </header>
 
         <main className="min-w-0 flex-1">{children}</main>
