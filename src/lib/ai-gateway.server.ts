@@ -61,7 +61,7 @@ export function createResponsesProvider(lovableApiKey: string, initialRunId?: st
 
 export const AI_MODEL = "openai/gpt-6-astra";
 
-export const RESPONSES_PROVIDER_OPTIONS = {
+export const RESPONSES_PROVIDER_OPTIONS: Record<string, Record<string, unknown>> = {
   openai: {
     store: false,
     forceReasoning: true,
@@ -69,7 +69,7 @@ export const RESPONSES_PROVIDER_OPTIONS = {
     reasoningSummary: "auto",
     include: ["reasoning.encrypted_content"],
   },
-} as const;
+};
 
 export function gatewayErrorResponse(error: unknown) {
   const message = error instanceof Error ? error.message : "Unknown error";
