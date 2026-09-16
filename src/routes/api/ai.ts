@@ -34,7 +34,7 @@ export const Route = createFileRoute("/api/ai")({
           const provider = createResponsesProvider(key, getLovableAiGatewayRunId(request));
           const result = streamText({
             model: provider.responses(AI_MODEL),
-            system: typeof system === "string" ? system : undefined,
+            ...(typeof system === "string" && system ? { system } : {}),
             prompt,
             providerOptions: RESPONSES_PROVIDER_OPTIONS,
           });
